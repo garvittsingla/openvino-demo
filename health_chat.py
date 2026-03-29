@@ -1,8 +1,3 @@
-"""
-OVMS Health Check and Chat Demo
-Polls the OVMS readiness endpoint, then opens an interactive chat loop.
-"""
-
 import time
 import httpx
 
@@ -48,7 +43,7 @@ def chat_loop() -> None:
             response = httpx.post(
                 f"{BASE_URL}/v3/chat/completions",
                 json={
-                    "model": "your-model-name",  # replace with actual model
+                    "model": "your-model-name",
                     "messages": messages,
                     "stream": False,
                 },
@@ -58,7 +53,7 @@ def chat_loop() -> None:
             if response.status_code != 200:
                 print(f"Error: Server returned {response.status_code}")
                 print(response.text)
-                messages.pop()  # Remove failed message
+                messages.pop()
                 continue
 
             reply = response.json()["choices"][0]["message"]["content"]
@@ -71,8 +66,7 @@ def chat_loop() -> None:
         except Exception as e:
             print(f"Error: {e}")
             if messages:
-                messages.pop()  # Remove failed message
-
+                messages.pop()
 
 if __name__ == "__main__":
     wait_for_ready()
