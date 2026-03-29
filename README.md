@@ -16,7 +16,8 @@ Made to demonstrate the final working of the project
 
 This demo proves two core ideas from the proposal:
 1. A shell script can reliably detect OS + architecture and construct the correct OVMS download URL.
-2. A Python script can poll the OVMS health endpoint and, once ready, drop into an interactive chat loop.
+2. Set bash file to set the exectubales, db files 
+3. A Python script can poll the OVMS health endpoint and, once ready, drop into an interactive chat loop.
 
 
 ## Files
@@ -24,6 +25,9 @@ This demo proves two core ideas from the proposal:
 **`detect.sh`** — Detects the current OS (Ubuntu, RHEL, Debian) and CPU
 architecture (amd64, arm64), then prints the correct OVMS package download
 URL.
+
+**`setup.sh`** — setup.sh creates a data directory (~/.local/share/openvino-health-chat/) with a config file and history folder for storing chat sessions as YAML files.
+It also creates a health-chat executable in ~/.local/bin/ and adds it to your PATH so you can run the app from anywhere.
 
 **`mock_server.py`** — A lightweight Flask server that mimics the two OVMS
 endpoints used by the CLI: `/v2/health/ready` and
